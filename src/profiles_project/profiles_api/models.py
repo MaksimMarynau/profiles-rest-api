@@ -14,7 +14,7 @@ class UserProfileManager(BaseUserManager):
             raise ValueError('Users must have an email address.')
 
         email = self.normalize_email(email)
-        user - self.model(email=email, name=name)
+        user = self.model(email=email, name=name)
 
         user.set_password(password)
         user.save(using=self._db)
@@ -58,3 +58,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """ DJango uses this when it needs to convert the object to a string """
         return self.email
+
+    class Meta:
+        verbose_name = "User Profile"
+        verbose_name_plural = "User profiles"
